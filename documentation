@@ -1,0 +1,81 @@
+File Structure
+Data Access Object (DAO) -> dao.py
+I implemented a DAO layer to load data from the provided JSON file.
+I organized and structure the data for efficient processing.
+Processor -> processor.py
+I developed a processor layer to calculate energy-related metrics.
+The reduced energy demand is calculated as follows:
+For each energy type and energy system of an asset:
+If the energy system is electricity, subtract the energy output from the energy
+demand.
+Controller -> controller.py
+I implemented the controller layer using FastAPI because it is effiecent and moderm plateform and increasing market share nowdays.
+I defined a GET API endpoint requiring an asset ID in the request.
+The API endpoint returned the energy demand for the requested asset in the
+
+---
+
+Running the Backend Application Locally
+
+Prerequisites:
+Python installed on your machine (version 3.8 or higher)
+Installation Steps:
+Clone the repository:
+
+cmd
+git clone https://github.com/HazemSalim/assets
+Navigate to the project directory:
+
+cmd
+cd repository
+Install dependencies using pip:
+
+cmd
+pip install fastapi uvicorn
+
+for test cases
+
+pip install pytest pytest-cov
+pip install httpx
+
+Starting the Server:
+To start the server, run the following command:
+
+cmd
+uvicorn controller:app --reload
+
+---
+
+Running the Server and call API to be sure everything is ok
+
+Making API Requests:
+Access the API endpoints using tools like swagger or Postman.
+
+Example API Request:
+Send a GET request to the following endpoint to retrieve energy demand for a specific asset:
+
+GET http://localhost:8000/energy_demand/1
+Example Response:
+json
+{
+"name": "High Rise",
+"energy_types": {
+"heat": 853452,
+"water": 724213,
+"light": 438889,
+"cool": 536702
+},
+"total_energy_demand": 2553256,
+"energy_output_reduction": 8.29
+}
+
+---
+
+to add test cases and be sure everything is ok.
+run cmd
+pytest
+
+---
+
+Additional Notes:
+Ensure the provided JSON file (json_database.json) is located in the root directory and contains the required data for the application to function properly.
